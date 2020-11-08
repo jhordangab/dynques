@@ -1,0 +1,36 @@
+.chart { margin: 15px auto}
+
+.node { font-size: 11px; }
+
+.node.question-node {
+	cursor: pointer;
+	padding: 0 2px;
+	min-width: 60px;
+	text-align: center;
+	height: 30px;
+	border: 2px solid #E8E8E3;
+	border-radius: 2px;
+	background: #fff;
+}
+
+.node.question-node.option {
+	border: 2px solid #1761a0;
+	background-color: #f5ce2f;
+}
+
+.node.question-node.option .node-name {
+	font-weight: 800;
+}
+
+.node.question-node .node-name {
+	line-height: 30px;
+	color: #1761a0;
+	font-size: 10px;
+	text-transform: uppercase;
+	font-weight: 600;
+}
+
+.node.question-node.question {
+	border: 2px solid #1761a0;
+	color: black;
+}
