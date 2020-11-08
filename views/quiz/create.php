@@ -1,7 +1,7 @@
 <?php
 
-$this->title = 'Cadastrar Quiz';
-$this->params['breadcrumbs'][] = ['label' => 'Quiz', 'url' => ['index']];
+$this->title = Yii::t('app', 'view.insert_quiz');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.quizs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

@@ -46,7 +46,7 @@ class DefaultController extends Controller
         
         if ($model->load(Yii::$app->request->post()) && $model->login()) 
         {
-            $allowed_languages = ['ES' => 'es', 'EN' => 'en-US', 'PT' => 'pt-BR'];
+            $allowed_languages = ['ES' => 'es', 'EN' => 'en', 'PT' => 'pt-BR'];
             $selected_language = isset($allowed_languages[Yii::$app->user->identity->language]) ? $allowed_languages[Yii::$app->user->identity->language] : 'pt-BR';
 
             Yii::$app->language = $selected_language;

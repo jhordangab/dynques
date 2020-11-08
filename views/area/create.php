@@ -1,7 +1,7 @@
 <?php
 
-$this->title = 'Cadastrar Área';
-$this->params['breadcrumbs'][] = ['label' => 'Áreas', 'url' => ['index']];
+$this->title = Yii::t('app', 'view.insert_area');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.areas'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

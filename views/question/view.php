@@ -4,8 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\helpers\FormHelper;
 
-$this->title = 'Pergunta: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Perguntas', 'url' => ['index', 'id_form' => $model->id_form]];
+$this->title = Yii::t('app', 'view.question') . ': ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.questions'), 'url' => ['index', 'id_form' => $model->id_form]];
 $this->params['breadcrumbs'][] = $this->title;
 
 $campos = FormHelper::getCampos();

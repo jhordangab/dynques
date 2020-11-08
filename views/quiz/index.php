@@ -7,7 +7,7 @@ use kartik\export\ExportMenu;
 use yii\helpers\ArrayHelper;
 use app\models\Area;
 
-$this->title = 'Quiz';
+$this->title = Yii::t('app', 'view.quizs');
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = <<<CSS
@@ -100,6 +100,7 @@ $columns[] =
                 {
                     return Html::a('<span class="fa fa-cogs"></span>', $url, [
                         'title' => Yii::t('app', 'view.configure'),
+                        'data-pjax' => 0
                     ]);
                 }
             ]
@@ -118,6 +119,7 @@ $columns[] =
                 {
                     return Html::a('<span class="fa fa-edit"></span>', $url, [
                         'title' => Yii::t('app', 'view.update'),
+                        'data-pjax' => 0
                     ]);
                 }
             ]
@@ -137,7 +139,8 @@ $columns[] =
                         'title' => Yii::t('app', 'view.delete'),
                         'class' => 'delete-quiz',
                         'data-id' => $model->id,
-                        'data-title' => $model->name
+                        'data-title' => $model->name,
+                        'data-pjax' => 0
                     ]);
                 },
             ]

@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-$this->title = 'Área: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Áreas', 'url' => ['index']];
+$this->title = Yii::t('app', 'view.area') . ': ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.areas'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

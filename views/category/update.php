@@ -1,9 +1,9 @@
 <?php
 
-$this->title = 'Alterar Categoria: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Categorias', 'url' => ['index']];
+$this->title = Yii::t('app', 'view.update_category') . ': ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.categories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Alterar Categoria';
+$this->params['breadcrumbs'][] = Yii::t('app', 'view.update_category');
 
 ?>
 

@@ -15,18 +15,14 @@ use yii\widgets\Pjax;
             
                 <h3 class="text-themecolor m-b-0 m-t-0"><?= $this->title ?></h3>
 
-                <?php Pjax::begin(['id' => 'breadcrumbData']) ?>
-
-                    <?=
-                        Breadcrumbs::widget(
-                            [
-                                'itemTemplate' => "<li class='breadcrumb-item'>{link}</li>\n",
-                                'activeItemTemplate' => "<li class='breadcrumb-item active'>{link}</li>\n",
-                                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                            ]
-                        ) ?>
-
-                <?php Pjax::end() ?>
+                <?=
+                Breadcrumbs::widget(
+                    [
+                        'itemTemplate' => "<li class='breadcrumb-item'>{link}</li>\n",
+                        'activeItemTemplate' => "<li class='breadcrumb-item active'>{link}</li>\n",
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ]
+                ) ?>
 
             </div>
             

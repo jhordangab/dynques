@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Página Inicial';
+$this->title = Yii::t('app', 'view.homepage');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 
-$this->title = 'Cadastrar Formulário';
-$this->params['breadcrumbs'][] = ['label' => 'Formulários', 'url' => ['index']];
+$this->title = Yii::t('app', 'view.insert_form');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.forms'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

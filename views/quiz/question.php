@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 
-$this->title = 'Perguntas do questionário: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Quiz', 'url' => ['index']];
+$this->title = Yii::t('app', 'view.questions') . ': ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.quizs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

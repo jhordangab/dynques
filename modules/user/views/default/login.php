@@ -75,12 +75,12 @@ JS;
                 </div>
 
                 <div class="hidden-sm-down text-right">
-                    <?= Html::a('Esqueci minha password', '/user/email', ['class' => 'btn btn-sm btn-link']) ?>
+                    <?= Html::a('Esqueci minha senha', '/user/email', ['class' => 'btn btn-sm btn-link']) ?>
                     <button class="btn btn-sm btn-link"></button>
                 </div>
 
                 <div class="hidden-md-up text-center">
-                    <?= Html::a('Esqueci minha password', '/user/email', ['class' => 'btn btn-block btn-link']) ?>
+                    <?= Html::a('Esqueci minha senha', '/user/email', ['class' => 'btn btn-block btn-link']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

@@ -1,9 +1,9 @@
 <?php
 
-$this->title = 'Alterar Pergunta: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Perguntas', 'url' => ['index', 'id_form' => $model->id_form]];
+$this->title = Yii::t('app', 'view.update_question') . ': ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.questions'), 'url' => ['index', 'id_form' => $model->id_form]];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Alterar Pergunta';
+$this->params['breadcrumbs'][] = Yii::t('app', 'view.update_question');
 
 ?>
 

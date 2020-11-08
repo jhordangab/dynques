@@ -1,7 +1,7 @@
 <?php
 
-$this->title = 'Cadastrar Categoria';
-$this->params['breadcrumbs'][] = ['label' => 'Categorias', 'url' => ['index']];
+$this->title = Yii::t('app', 'view.insert_category');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.categories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

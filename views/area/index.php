@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\Pjax;
 use kartik\export\ExportMenu;
 
-$this->title = 'Áreas';
+$this->title = Yii::t('app', 'view.areas');
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = <<<CSS
@@ -66,6 +66,7 @@ $columns[] =
                 {
                     return Html::a('<span class="fa fa-eye"></span>', $url, [
                         'title' => Yii::t('app', 'view.view'),
+                        'data-pjax' => 0
                     ]);
                 }
             ]
@@ -84,6 +85,7 @@ $columns[] =
                 {
                     return Html::a('<span class="fa fa-edit"></span>', $url, [
                         'title' => Yii::t('app', 'view.update'),
+                        'data-pjax' => 0
                     ]);
                 }
             ]
@@ -103,7 +105,8 @@ $columns[] =
                         'title' => Yii::t('app', 'view.delete'),
                         'class' => 'delete-area',
                         'data-id' => $model->id,
-                        'data-title' => $model->name
+                        'data-title' => $model->name,
+                        'data-pjax' => 0
                     ]);
                 },
             ]
@@ -161,7 +164,7 @@ $this->registerJs($js);
 
                 <div class="card-body">
 
-                    <?= Html::a(Yii::t('app', 'view.create'), ['create'], ['class' => 'btn btn-success btn-default float-right ml-2', 'data-pjax' => 0]); ?>=
+                    <?= Html::a(Yii::t('app', 'view.create'), ['create'], ['class' => 'btn btn-success btn-default float-right ml-2', 'data-pjax' => 0]); ?>
 
                     <?= $this->render('_search', ['model' => $searchModel]); ?>
 

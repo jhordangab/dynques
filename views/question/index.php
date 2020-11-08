@@ -6,8 +6,8 @@ use yii\widgets\Pjax;
 use kartik\export\ExportMenu;
 use app\helpers\FormHelper;
 
-$this->title = 'Perguntas';
-$this->params['breadcrumbs'][] = ['label' => 'Formulário:: ' . $form->name, 'url' => ['/form/index']];
+$this->title = Yii::t('app', 'view.questions');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.form') . ':: ' . $form->name, 'url' => ['/form/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = <<<CSS
@@ -81,6 +81,7 @@ $columns[] =
                 {
                     return Html::a('<span class="fa fa-eye"></span>', $url, [
                         'title' => Yii::t('app', 'view.view'),
+                        'data-pjax' => 0
                     ]);
                 }
             ]
@@ -99,6 +100,7 @@ $columns[] =
                 {
                     return Html::a('<span class="fa fa-edit"></span>', $url, [
                         'title' => Yii::t('app', 'view.update'),
+                        'data-pjax' => 0
                     ]);
                 }
             ]
@@ -118,7 +120,8 @@ $columns[] =
                         'title' => Yii::t('app', 'view.delete'),
                         'class' => 'delete-question',
                         'data-id' => $model->id,
-                        'data-title' => $model->name
+                        'data-title' => $model->name,
+                        'data-pjax' => 0
                     ]);
                 },
             ]

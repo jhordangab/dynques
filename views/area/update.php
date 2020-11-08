@@ -1,9 +1,9 @@
 <?php
 
-$this->title = 'Alterar Área: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Áreas', 'url' => ['index']];
+$this->title = Yii::t('app', 'view.update_area') . ': ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.areas'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Alterar Área';
+$this->params['breadcrumbs'][] = Yii::t('app', 'view.update_area');
 
 ?>
 

@@ -1,7 +1,7 @@
 <?php
 
-$this->title = 'Cadastrar Pergunta';
-$this->params['breadcrumbs'][] = ['label' => 'Perguntas', 'url' => ['index', 'id_form' => $model->id_form]];
+$this->title = Yii::t('app', 'view.insert_question');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'view.questions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

@@ -110,4 +110,32 @@ return [
     'field.textarea' => 'Textarea',
     'field.textfield' => 'Textfield',
     'field.view' => 'Only view',
+
+    'view.area' => 'Area',
+    'view.areas' => 'Areas',
+    'view.insert_area' => 'Insert area',
+    'view.update_area' => 'Update area',
+
+    'view.category' => 'Category',
+    'view.categories' => 'Categories',
+    'view.insert_category' => 'Insert category',
+    'view.update_category' => 'Update category',
+
+    'view.form' => 'Form',
+    'view.forms' => 'Forms',
+    'view.insert_form' => 'Insert form',
+    'view.update_form' => 'Update form',
+
+    'view.question' => 'Question',
+    'view.questions' => 'Questions',
+    'view.insert_question' => 'Insert question',
+    'view.update_question' => 'Update question',
+
+    'view.quiz' => 'Quiz',
+    'view.quizs' => 'Quiz',
+    'view.insert_quiz' => 'Insert quiz',
+    'view.update_quiz' => 'Update quiz',
+
+    'view.my_profile' => 'My profile',
+    'view.homepage' => 'Homepage',
 ];
