@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title
 
                 <div class="card-action">
 
-                    <a class="btn btn-success mt-2" href="/app/main?id=<?= $quiz->id ?>"><?= Yii::t('app', 'view.share') ?></a>
+                    <a class="btn btn-success mt-2" href="/app/main?id_quiz=<?= $quiz->id ?>"><?= Yii::t('app', 'view.share') ?></a>
 
                     <a class="btn btn-default mt-2" href="#"><?= Yii::t('app', 'view.view') ?></a>
 

@@ -15,7 +15,7 @@ class AppQuiz extends \yii\db\ActiveRecord
     {
         return [
             [['id_quiz'], 'required'],
-            [['id_quiz', 'created_by', 'updated_by'], 'integer'],
+            [['id_quiz'], 'integer'],
             [['created_at', 'updated_at', 'is_active', 'is_deleted'], 'safe'],
             [['id_quiz'], 'exist', 'skipOnError' => true, 'targetClass' => Quiz::className(), 'targetAttribute' => ['id_quiz' => 'id']],
         ];
@@ -29,8 +29,6 @@ class AppQuiz extends \yii\db\ActiveRecord
             'is_deleted' => Yii::t('app', 'geral.is_deleted'),
             'created_at' => Yii::t('app', 'geral.created_at'),
             'updated_at' => Yii::t('app', 'geral.updated_at'),
-            'created_by' => Yii::t('app', 'geral.created_by'),
-            'updated_by' => Yii::t('app', 'geral.updated_by')
         ];
     }
 
@@ -38,11 +36,6 @@ class AppQuiz extends \yii\db\ActiveRecord
     {
         $behaviors =
             [
-                [
-                    'class' => \yii\behaviors\BlameableBehavior::className(),
-                    'createdByAttribute' => 'created_by',
-                    'updatedByAttribute' => 'updated_by',
-                ],
                 [
                     'class' => \yii\behaviors\TimestampBehavior::className(),
                     'createdAtAttribute' => 'created_at',

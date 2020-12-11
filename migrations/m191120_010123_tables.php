@@ -171,8 +171,6 @@ class m191120_010123_tables extends Migration
                 'is_deleted' => Schema::TYPE_BOOLEAN . ' not null default FALSE',
                 'created_at' => Schema::TYPE_TIMESTAMP . ' null',
                 'updated_at' => Schema::TYPE_TIMESTAMP . ' null',
-                'created_by' => Schema::TYPE_INTEGER . ' null',
-                'updated_by' => Schema::TYPE_INTEGER . ' null',
             ], $tableOptions);
 
         $this->addForeignKey("dq_apqu_ques_fk", "{{%dq_app_quiz}}", "id_quiz", "{{%dq_quiz}}", "id");
@@ -183,12 +181,13 @@ class m191120_010123_tables extends Migration
                 'id_app_quiz' => Schema::TYPE_INTEGER . ' not null',
                 'id_question' => Schema::TYPE_INTEGER . ' not null',
                 'id_option' => Schema::TYPE_INTEGER . ' not null',
+                'ip' => Schema::TYPE_STRING . ' not null',
+                'started_at' => Schema::TYPE_TIMESTAMP . ' null',
+                'finished_at' => Schema::TYPE_TIMESTAMP . ' null',
                 'is_active' => Schema::TYPE_BOOLEAN . ' not null default TRUE',
                 'is_deleted' => Schema::TYPE_BOOLEAN . ' not null default FALSE',
                 'created_at' => Schema::TYPE_TIMESTAMP . ' null',
                 'updated_at' => Schema::TYPE_TIMESTAMP . ' null',
-                'created_by' => Schema::TYPE_INTEGER . ' null',
-                'updated_by' => Schema::TYPE_INTEGER . ' null',
             ], $tableOptions);
 
         $this->addForeignKey("dq_aqre_apqu_fk", "{{%dq_app_quiz_answer}}", "id_app_quiz", "{{%dq_app_quiz}}", "id");
@@ -201,12 +200,11 @@ class m191120_010123_tables extends Migration
                 'id_app_quiz_answer' => Schema::TYPE_INTEGER . ' not null',
                 'id_form' => Schema::TYPE_INTEGER . ' not null',
                 'id_question' => Schema::TYPE_INTEGER . ' not null',
+                'answer' => Schema::TYPE_TEXT . ' null',
                 'is_active' => Schema::TYPE_BOOLEAN . ' not null default TRUE',
                 'is_deleted' => Schema::TYPE_BOOLEAN . ' not null default FALSE',
                 'created_at' => Schema::TYPE_TIMESTAMP . ' null',
                 'updated_at' => Schema::TYPE_TIMESTAMP . ' null',
-                'created_by' => Schema::TYPE_INTEGER . ' null',
-                'updated_by' => Schema::TYPE_INTEGER . ' null',
             ], $tableOptions);
 
         $this->addForeignKey("dq_afre_aqre_fk", "{{%dq_app_form_answer}}", "id_app_quiz_answer", "{{%dq_app_quiz_answer}}", "id");

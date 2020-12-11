@@ -451,24 +451,83 @@ HTML;
         }
     }
 
-    public function save($runValidation = true, $attributeNames = null)
+//    public function save($runValidation = true, $attributeNames = null)
+//    {
+//        $transaction = \Yii::$app->db->beginTransaction();
+//
+//        try
+//        {
+//            if (! parent::save($runValidation = true, $attributeNames = null))
+//            {
+//                $transaction->rollback();
+//                return false;
+//            }
+//
+////            $this->saveDynamics();
+//            $transaction->commit();
+//
+//        }
+//        catch (Exception $e)
+//        {
+//            $transaction->rollback();
+//        }
+//
+//        return true;
+//    }
+
+    public function saveDynamics($id_answer, $started_time, $id_option)
     {
-        $transaction = \Yii::$app->db->beginTransaction();
+        $quest_answ = AppQuizAnwser::find()->andWhere([
+            'id_app_quiz' => $id_answer,
+            'id_question' => $this->id,
+        ])->one();
 
-        try
+        if(!$quest_answ)
         {
-            if (! parent::save($runValidation = true, $attributeNames = null))
-            {
-                $transaction->rollback();
-                return false;
-            }
-
-            $transaction->commit();
-
+            $quest_answ = new AppQuizAnwser();
+            $quest_answ->id_app_quiz = $id_answer;
+            $quest_answ->id_question = $this->id;
         }
-        catch (Exception $e)
+
+        $quest_answ->id_option = $id_option;
+        $quest_answ->ip = \Yii::$app->request->userIP;
+        $quest_answ->started_at = date("Y-m-d H:i:s", $started_time);
+        $quest_answ->finished_at = date('Y-m-d H:i:s', time());
+        $quest_answ->save();
+
+        foreach ($this->_dynamicFields as $field => $campo_id)
         {
-            $transaction->rollback();
+            if (isset($this->_dynamicData[$field]) && $this->_dynamicData[$field] != '')
+            {
+                $value = $this->_dynamicData[$field];
+
+                $answ = AppFormAnswer::find()->where([
+                    'id_app_quiz_answer' => $quest_answ->id,
+                    'id_form' => $this->id_form,
+                    'id_question' => $campo_id,
+                    'is_active' => TRUE,
+                    'is_deleted' => FALSE
+                ])->one();
+
+                if ($answ)
+                {
+                    self::__set($field, $answ->answer);
+                }
+                else
+                {
+                    $answ = new AppFormAnswer();
+                    $answ->id_app_quiz_answer = $quest_answ->id;
+                    $answ->id_form = $this->id_form;
+                    $answ->id_question = $campo_id;
+                }
+
+                $answ->answer = $value;
+
+                if (! $answ->save())
+                {
+                    trigger_error($answ->getErrors());
+                }
+            }
         }
 
         return true;

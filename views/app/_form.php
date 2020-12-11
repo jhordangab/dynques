@@ -21,13 +21,13 @@ $('#dynamicform-id_option .radio input').on('ifChecked', function(e){
     var option_id = $(this).val();
 
     $.ajax({
-       url: '/app/render-form?id={$model->id}&question_id={$dynamic->id}&option_id=' + option_id, 
+       url: '/app/render-form?id_quiz={$model->id}&id_answer={$id_answer}&question_id={$dynamic->id}&option_id=' + option_id + '&t={$t}', 
        // dataType: 'JSON',  
        cache: false,
        contentType: false,
        processData: false,
        data: form_data,                     
-       type: 'POST',                 
+       // type: 'POST',                 
        success: function(data){    
            $('#render-dynamic-form').html(data);
        },
@@ -52,7 +52,7 @@ $this->registerJs($js);
 
 <?php $form = ActiveForm::begin([
     'id' => 'dynamic-form',
-    'action' => '/app/main?id=' . $model->id . '&question_id=' . $dynamic->id,
+    'action' => '/app/main?id_quiz=' . $model->id . '&id_answer=' . $id_answer . '&question_id=' . $dynamic->id . '&t=' . $t,
     'options' => [
         'enctype' => 'multipart/form-data'
     ]

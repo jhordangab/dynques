@@ -14,9 +14,9 @@ class AppQuizAnwser extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_app_quiz', 'id_question', 'id_option'], 'required'],
-            [['id_app_quiz', 'id_question', 'id_option', 'created_by', 'updated_by'], 'integer'],
-            [['created_at', 'updated_at', 'is_active', 'is_deleted'], 'safe'],
+            [['id_app_quiz', 'id_question', 'id_option', 'ip'], 'required'],
+            [['id_app_quiz', 'id_question', 'id_option'], 'integer'],
+            [['ip', 'started_at', 'finished_at', 'created_at', 'updated_at', 'is_active', 'is_deleted'], 'safe'],
             [['id_app_quiz'], 'exist', 'skipOnError' => true, 'targetClass' => AppQuiz::className(), 'targetAttribute' => ['id_app_quiz' => 'id']],
             [['id_option'], 'exist', 'skipOnError' => true, 'targetClass' => QuizQuestionOption::className(), 'targetAttribute' => ['id_option' => 'id']],
             [['id_question'], 'exist', 'skipOnError' => true, 'targetClass' => QuizQuestion::className(), 'targetAttribute' => ['id_question' => 'id']],
@@ -29,12 +29,13 @@ class AppQuizAnwser extends \yii\db\ActiveRecord
             'id_app_quiz' => Yii::t('app', 'geral.quiz'),
             'id_question' => Yii::t('app', 'geral.question'),
             'id_option' => Yii::t('app', 'geral.option'),
+            'ip' => Yii::t('app', 'geral.ip'),
+            'started_at' => Yii::t('app', 'geral.started_at'),
+            'finished_at' => Yii::t('app', 'geral.finished_at'),
             'is_active' => Yii::t('app', 'geral.is_active'),
             'is_deleted' => Yii::t('app', 'geral.is_deleted'),
             'created_at' => Yii::t('app', 'geral.created_at'),
             'updated_at' => Yii::t('app', 'geral.updated_at'),
-            'created_by' => Yii::t('app', 'geral.created_by'),
-            'updated_by' => Yii::t('app', 'geral.updated_by')
         ];
     }
 
@@ -42,11 +43,6 @@ class AppQuizAnwser extends \yii\db\ActiveRecord
     {
         $behaviors =
             [
-                [
-                    'class' => \yii\behaviors\BlameableBehavior::className(),
-                    'createdByAttribute' => 'created_by',
-                    'updatedByAttribute' => 'updated_by',
-                ],
                 [
                     'class' => \yii\behaviors\TimestampBehavior::className(),
                     'createdAtAttribute' => 'created_at',

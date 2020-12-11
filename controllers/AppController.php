@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\AppQuiz;
+use app\models\AppQuizAnwser;
 use app\models\QuizQuestionOption;
 use app\models\DynamicForm;
 use Yii;
@@ -32,13 +34,28 @@ class AppController extends BaseController
             ];
     }
 
-    public function actionMain($id, $question_id = null)
+    public function actionMain($id_quiz, $id_answer = null, $question_id = null, $t = 0)
     {
         $this->layout = 'app';
 
         $allowed_languages = ['ES' => 'es', 'EN' => 'en', 'PT' => 'pt-BR'];
 
-        $model = $this->findModel($id);
+        $model = $this->findModel($id_quiz);
+
+        if($t == 0)
+        {
+            $t = strtotime('now');
+        }
+
+        if(!$id_answer)
+        {
+            $answer = new AppQuiz();
+            $answer->id_quiz = $id_quiz;
+            $answer->save();
+
+            return $this->redirect(['main', 'id_quiz' => $id_quiz, 'id_answer' => $answer->id, 'question_id' => $question_id]);
+        }
+
         $selected_language = isset($allowed_languages[$model->user->language]) ? $allowed_languages[$model->user->language] : 'pt-BR';
         Yii::$app->language = $selected_language;
         Yii::$app->session->set('language', $selected_language);
@@ -49,7 +66,7 @@ class AppController extends BaseController
                 'order' => 1,
                 'is_active' => TRUE,
                 'is_deleted' => FALSE,
-                'id_quiz' => $id
+                'id_quiz' => $id_quiz
             ])->one();
         }
         else
@@ -65,46 +82,57 @@ class AppController extends BaseController
 
         $dynamic = DynamicForm::findOne($question->id);
 
+        $post = Yii::$app->request->post();
+
         if(sizeof($options) == 1)
         {
             $dynamic->id_option = $options[0]->id;
             $dynamic->id_form = $options[0]->id_form;
         }
+        elseif(isset($post["DynamicForm"]['id_option']))
+        {
+            $selected_option = QuizQuestionOption::findOne($post["DynamicForm"]['id_option']);
+            $dynamic->id_option = $selected_option->id;
+            $dynamic->id_form = $selected_option->id_form;
+        }
 
         $dynamic->getAttributesDynamicFields();
 
-        if ($dynamic->load(Yii::$app->request->post()) && $dynamic->validate())
+        if ($dynamic->load($post) && $dynamic->validate())
         {
             $selected_option = QuizQuestionOption::findOne($dynamic->id_option);
             $dynamic->id_form = $selected_option->id_form;
+            $dynamic->saveDynamics($id_answer, $t, $dynamic->id_option);
 
             if ($selected_option->id_next_question) {
-                return $this->redirect(['main', 'id' => $id, 'pergunta_id' => $selected_option->id_next_question]);
+                return $this->redirect(['main', 'id_quiz' => $id_quiz, 'id_answer' => $id_answer, 'question_id' => $selected_option->id_next_question]);
             } else {
-                return $this->redirect(['success', 'id' => $model->id]);
+                return $this->redirect(['success', 'id_quiz' => $model->id, 'id_answer' => $id_answer]);
             }
         }
 
         return $this->render('main', [
             'model' => $model,
+            'id_answer' => $id_answer,
+            't' => $t,
             'dynamic' => $dynamic
         ]);
     }
 
-    public function actionSuccess($id)
+    public function actionSuccess($id_quiz, $id_answer)
     {
         $this->layout = 'app';
 
-        $model = $this->findModel($id);
+        $model = $this->findModel($id_quiz);
 
         return $this->render('success', [
             'model' => $model,
         ]);
     }
 
-    public function actionRenderForm($id, $question_id, $option_id)
+    public function actionRenderForm($id_quiz, $id_answer, $question_id, $option_id, $t)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($id_quiz);
         $selected_option = QuizQuestionOption::findOne($option_id);
 
         $dynamic = DynamicForm::findOne($question_id);
@@ -114,6 +142,8 @@ class AppController extends BaseController
 
         return $this->renderAjax( '_form', [
             'model' => $model,
+            'id_answer' => $id_answer,
+            't' => $t,
             'dynamic' => $dynamic
         ]);
     }

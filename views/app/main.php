@@ -21,6 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $this->render('_form', [
                     'model' => $model,
+                    'id_answer' => $id_answer,
+                    't' => $t,
                     'dynamic' => $dynamic
                 ]); ?>
 
