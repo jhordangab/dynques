@@ -169,11 +169,15 @@ class DynamicForm extends QuizQuestion
 
                 $items = ArrayHelper::map($options,'id', 'title');
 
+                echo '<label class="control-label has-star">' . $this->getAttributeLabel($key) . '</label>';
+
+                echo '<p>' . $this->description . '</p>';
+
                 echo $form->field($this, $key)
                     ->radioList(
                         $items,
                         ['prompt' => '']
-                    )->label($this->getAttributeLabel($key));
+                    )->label(FALSE);
 
                 echo '<hr>';
             }

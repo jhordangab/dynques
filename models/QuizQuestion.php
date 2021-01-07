@@ -19,7 +19,6 @@ class QuizQuestion extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['created_at', 'updated_at', 'is_active', 'is_deleted'], 'safe'],
             [['title'], 'string', 'max' => 255],
-            [[], 'string', 'max' => 1],
             [['id_category'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['id_category' => 'id']],
             [['id_quiz'], 'exist', 'skipOnError' => true, 'targetClass' => Quiz::className(), 'targetAttribute' => ['id_quiz' => 'id']],
         ];
