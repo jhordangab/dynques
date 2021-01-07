@@ -76,7 +76,7 @@ class QuizQuestion extends \yii\db\ActiveRecord
         return $this->hasOne(Quiz::className(), ['id' => 'id_quiz']);
     }
 
-    public function getQuisQuestionOptions()
+    public function getOptions()
     {
         return $this->hasMany(QuizQuestionOption::className(), ['id_question' => 'id']);
     }
