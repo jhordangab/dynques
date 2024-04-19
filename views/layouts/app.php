@@ -207,7 +207,7 @@ $this->registerCss($css);
 
                             ?>
 
-                            <div class="row" style="margin-top: 200px;">
+                            <div class="row" style="margin-top: 20px;">
 
                                 <div class="col-lg-4">
 
