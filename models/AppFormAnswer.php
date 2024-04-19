@@ -17,7 +17,7 @@ class AppFormAnswer extends \yii\db\ActiveRecord
             [['id_app_quiz_answer', 'id_form', 'id_question'], 'required'],
             [['id_app_quiz_answer', 'id_form', 'id_question'], 'integer'],
             [['answer', 'created_at', 'updated_at'], 'safe'],
-            [['is_active', 'is_deleted'], 'string', 'max' => 1],
+//            [['is_active', 'is_deleted'], 'string', 'max' => 1],
             [['id_app_quiz_answer'], 'exist', 'skipOnError' => true, 'targetClass' => AppQuizAnwser::className(), 'targetAttribute' => ['id_app_quiz_answer' => 'id']],
             [['id_form'], 'exist', 'skipOnError' => true, 'targetClass' => Form::className(), 'targetAttribute' => ['id_form' => 'id']],
             [['id_question'], 'exist', 'skipOnError' => true, 'targetClass' => FormQuestion::className(), 'targetAttribute' => ['id_question' => 'id']],

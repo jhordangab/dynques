@@ -282,7 +282,7 @@ HTML;
                                     <div class="sig sigWrapper" style="height:auto;">
                                     <div class="typed"></div>
                                     <canvas class="pad" width="800" height="250"></canvas>
-                                    <input type="hidden" name="dynamicform-dynamic_{$field->id}" class="output">
+                                    <input type="hidden" name="DynamicForm[dynamic_{$field->id}]" class="output">
                                 </div>
                             </div>
                             
@@ -525,11 +525,11 @@ HTML;
                     $answ->id_question = $campo_id;
                 }
 
-                $answ->answer = $value;
+                $answ->answer = is_array($value) ? json_encode($value) : $value;
 
                 if (! $answ->save())
                 {
-                    trigger_error($answ->getErrors());
+                    var_dump($answ->getErrors());die;
                 }
             }
         }
