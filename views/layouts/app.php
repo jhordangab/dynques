@@ -209,10 +209,10 @@ $this->registerCss($css);
 
                             <div class="row" style="margin-top: 20px;">
 
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
 
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <?= $content ?>
                                 </div>
 

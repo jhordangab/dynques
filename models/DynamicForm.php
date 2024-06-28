@@ -257,6 +257,22 @@ class DynamicForm extends QuizQuestion
 
                         break;
 
+                    case FormHelper::CAMPO_PERCENT:
+
+                        echo $form->field($this, $key)->widget(MaskMoney::classname(), [
+                            'options' => ['title' => $field->help],
+                            'pluginOptions' => [
+                                'prefix' => '% ',
+                                'suffix' => '',
+                                'allowNegative' => true,
+                                'thousands' => '.',
+                                'decimal' => ',',
+                                'precision' => 2
+                            ]
+                        ])->label($this->getAttributeLabel($key));
+
+                        break;
+
                     case FormHelper::CAMPO_VIEW:
 
                         $html = <<<HTML

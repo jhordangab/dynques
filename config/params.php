@@ -22,5 +22,7 @@ return
         'unmaskAsNumber' => true,
     ],
     'maintenance' => FALSE,
-    'dontSaveLog' => FALSE
+    'dontSaveLog' => FALSE,
+    'quizComercial' => 4,
+    'porcentagemComercial' => 0.17
 ];

@@ -125,9 +125,54 @@ class AppController extends BaseController
 
         $model = $this->findModel($id_quiz);
 
-        return $this->render('success', [
-            'model' => $model,
-        ]);
+        if(isset(Yii::$app->params['quizComercial']) && Yii::$app->params['quizComercial'] == $id_quiz) {
+            $sql = <<<SQL
+select
+	dqq.`order` as formulario_ordem,
+	dqq.title as formulario,
+	dfq.`order` as pergunta_ordem,
+	dfq.name,
+	dafa.answer as resposta
+from
+	dq_app_quiz_answer asw
+join dq_quiz_question dqq on
+	dqq.id = asw.id_question
+	and dqq.is_active = 1
+	and dqq.is_deleted = 0
+join dq_app_form_answer dafa on
+	dafa.id_app_quiz_answer = asw.id
+	and dafa.is_active = 1
+	and dafa.is_deleted = 0
+join dq_form_question dfq on
+	dfq.id = dafa.id_question
+	and dfq.is_active = 1
+	and dfq.is_deleted = 0
+where
+	asw.is_active = 1
+	and asw.is_deleted = 0
+	and asw.id_app_quiz = {$id_answer}
+order by
+	dqq.`order` asc,
+    dfq.`order` asc
+SQL;
+
+            $result = Yii::$app->db->createCommand($sql)->queryAll();
+
+            $data = [];
+
+            foreach($result as $r) {
+                $data[$r['formulario_ordem']][$r['pergunta_ordem']] = $r['resposta'];
+            }
+
+            return $this->render('success_comercial', [
+                'model' => $model,
+                'data' => $data
+            ]);
+        } else {
+            return $this->render('success', [
+                'model' => $model,
+            ]);
+        }
     }
 
     public function actionRenderForm($id_quiz, $id_answer, $question_id, $option_id, $t)

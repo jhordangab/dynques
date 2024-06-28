@@ -14,6 +14,8 @@ class FormHelper
     CONST CAMPO_VIEW = 'view';
     CONST CAMPO_HOUR = 'hour';
     CONST CAMPO_MONEY = 'money';
+
+    CONST CAMPO_PERCENT = 'percent';
     CONST CAMPO_RADIOLIST = 'radiolist';
     CONST CAMPO_SELECT = 'select';
     CONST CAMPO_SELECT_MULTIPLE = 'selectmultiple';
@@ -41,6 +43,7 @@ class FormHelper
             self::CAMPO_RADIOLIST => Yii::t('app', 'field.radiolist'),
             self::CAMPO_SELECT => Yii::t('app', 'field.combobox'),
             self::CAMPO_MONEY => Yii::t('app', 'field.money'),
+            self::CAMPO_PERCENT => 'Porcentagem',
             self::CAMPO_IMAGE_MULTIPLE => Yii::t('app', 'field.images'),
             self::CAMPO_CHECKBOX_MULTIPLE => Yii::t('app', 'field.checkboxlist'),
             self::CAMPO_SELECT_MULTIPLE => Yii::t('app', 'field.comboboxlist'),
