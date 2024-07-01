@@ -5,7 +5,7 @@ use yii\helpers\ArrayHelper;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;
 
-$porc = Yii::$app->params['porcentagemComercial'];
+//$porc = Yii::$app->params['porcentagemComercial'];
 $tot_h = 0;
 $tot_i = 0;
 
@@ -53,6 +53,7 @@ $tot_i = 0;
                     <?php
                     $e = ArrayHelper::getValue($data[2], $x, 0) / 100;
                     $f = ArrayHelper::getValue($data[3], $x, 0);
+                    $porc = ArrayHelper::getValue($data[4], 11, 0);
                         if($f > 0 && $e > 0) :
                             $d = ($e + 0.02);
                             $f = ArrayHelper::getValue($data[3], $x, 0);
